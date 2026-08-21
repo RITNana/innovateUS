@@ -53,10 +53,10 @@ export default function NewsletterOptInForm() {
     setWorkshopSeries(e.target.value)
   }
 
-  // Test Token
-  useEffect(() => {
-    console.log("Token Loaded: ", accessToken)
-  }, [])
+  // // Test Token
+  // useEffect(() => {
+  //   console.log("Token Loaded: ", accessToken)
+  // }, [])
 
 
   const handleSubmit = async (e) => {
@@ -91,8 +91,8 @@ export default function NewsletterOptInForm() {
       );
 
       const responseData = await response.json()
-      console.log("Full Log", responseData)
-      console.log('POST Status Code', response.status)
+      // console.log("Full Log", responseData)
+      // console.log('POST Status Code', response.status)
 
       if (!response.ok) {
         throw new Error('Failed to subscribe');
