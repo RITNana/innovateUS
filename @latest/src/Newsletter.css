@@ -1,5 +1,8 @@
 /* InnovateUS Newsletter Opt-In Form Styling */
+
+/* Import Libre Franklin Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap");
+
 /* Color Variables */
 :root {
   --innovate-dark-blue: #003366; /* Dark blue for "innovate" */
@@ -24,7 +27,7 @@
   font-family: "Libre Franklin";
 }
 
-
+/* Title of Registration Form*/
 .newsletter-form-container h2 {
   color: var(--innovate-dark-blue);
   font-size: 24px;
@@ -34,13 +37,6 @@
   text-align: center;
 }
 
-.newsletter-form-container p {
-  color: var(--text-dark);
-  font-size: 14px;
-  text-align: center;
-  /* margin: 0 0 24px 0;
-  line-height: 1.5; */
-}
 
 /* Form Wrapper */
 .newsletter-form {

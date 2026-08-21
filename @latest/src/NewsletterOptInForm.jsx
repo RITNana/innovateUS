@@ -3,19 +3,21 @@ import "./Newsletter.css"
 
 export default function NewsletterOptInForm() {
 
+  // state variables for input fields
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState(''); // state variable for email
+  const [email, setEmail] = useState(''); //
   const [country, setCountry] = useState('')
   const [govOrg, setGovOrg] = useState('')
   const [newsletter, setNewsletter] = useState(false)
   const [workshopSeries, setWorkshopSeries] = useState('')
 
-  const [loading, setLoading] = useState(false); // loading state
-  const [message, setMessage] = useState(''); // message state
+  // state variables for handling state loading 
+  const [loading, setLoading] = useState(false); 
+  const [message, setMessage] = useState(''); 
   const [messageType, setMessageType] = useState('');
 
-
+  // URl and access tokens initalized
   const apiURL = "https://burnes-center.directus.app/items/cw_intake"
   const accessToken = import.meta.env.VITE_DIRECTUS_TOKEN
 
@@ -25,10 +27,11 @@ export default function NewsletterOptInForm() {
     setEmail(e.target.value);
   };
 
+  // update the first name with user input
   const handleFirstName = (e) => {
     setFirstName(e.target.value)
   }
-
+  // update the last name with user input
   const handleLastName = (e) => {
     setLastName(e.target.value)
   }
@@ -58,12 +61,16 @@ export default function NewsletterOptInForm() {
   //   console.log("Token Loaded: ", accessToken)
   // }, [])
 
+  // Sends a POST request to the server to add data to the required fields
+  // Authorization header required due to accesss token
+  // returns the repsonse body, which gets converted to a JSON with the different fields
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page from reloading 
     setLoading(true); // boolean to know if data has been sent
     setMessage(''); // set message to be empty 
 
+   
     try {
       const response = await fetch(
         apiURL,
@@ -82,22 +89,22 @@ export default function NewsletterOptInForm() {
             gov_org: govOrg,
             newsletter: newsletter,
             workshop_series: workshopSeries,
-
-            // newsletter_opt_in: true,
-            // Add timestamp
-            // signup_date: new Date().toISOString(), 
           }),
         }
       );
 
-      const responseData = await response.json()
+      /* testing logs and status codes */
+
+      // const responseData = await response.json()
       // console.log("Full Log", responseData)
       // console.log('POST Status Code', response.status)
 
+        // if the response returned is not valid (data I send), throw an error
       if (!response.ok) {
         throw new Error('Failed to subscribe');
       }
 
+      // Else, show a success message and reset the fields to empty
       setMessageType('success');
       setMessage('Thank you for subscribing! Check your email for updates.');
       // Reset form
@@ -109,11 +116,13 @@ export default function NewsletterOptInForm() {
       setNewsletter(false);
       setWorkshopSeries('');
 
+      // any error with our request, throw and error
     } catch (error) {
       setMessageType('error');
       setMessage('Error subscribing. Please try again.');
       console.error('Error:', error);
 
+      // reset loading state to false 
     } finally {
       setLoading(false);
     }
@@ -148,6 +157,7 @@ export default function NewsletterOptInForm() {
 
   // retrieveDataTest()
 
+  // JSX of our Newsletter Form
   return (
     <>
       <div className="newsletter-form-container">
@@ -203,7 +213,7 @@ export default function NewsletterOptInForm() {
           </select>
 
 
-          {/* Newsletter Opt-In Checkbox */}
+          /* Newsletter Opt-In Checkbox */
           <label>
             <input
               type="checkbox"
@@ -215,7 +225,7 @@ export default function NewsletterOptInForm() {
             Subscribe to our weekly newsletter
           </label>
 
-          {/* Workshop Series Dropdown */}
+          /* Workshop Series Dropdown */
           <select
             value={workshopSeries}
             onChange={handleWorkshopSeries}
