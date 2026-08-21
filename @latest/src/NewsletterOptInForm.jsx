@@ -13,8 +13,8 @@ export default function NewsletterOptInForm() {
   const [workshopSeries, setWorkshopSeries] = useState('')
 
   // state variables for handling state loading 
-  const [loading, setLoading] = useState(false); 
-  const [message, setMessage] = useState(''); 
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
 
   // URl and access tokens initalized
@@ -56,10 +56,6 @@ export default function NewsletterOptInForm() {
     setWorkshopSeries(e.target.value)
   }
 
-  // // Test Token
-  // useEffect(() => {
-  //   console.log("Token Loaded: ", accessToken)
-  // }, [])
 
   // Sends a POST request to the server to add data to the required fields
   // Authorization header required due to accesss token
@@ -70,7 +66,7 @@ export default function NewsletterOptInForm() {
     setLoading(true); // boolean to know if data has been sent
     setMessage(''); // set message to be empty 
 
-   
+
     try {
       const response = await fetch(
         apiURL,
@@ -93,13 +89,8 @@ export default function NewsletterOptInForm() {
         }
       );
 
-      /* testing logs and status codes */
 
-      // const responseData = await response.json()
-      // console.log("Full Log", responseData)
-      // console.log('POST Status Code', response.status)
-
-        // if the response returned is not valid (data I send), throw an error
+      // if the response returned is not valid (data I send), throw an error
       if (!response.ok) {
         throw new Error('Failed to subscribe');
       }
@@ -127,35 +118,6 @@ export default function NewsletterOptInForm() {
       setLoading(false);
     }
   };
-
-  // Testing GET Request
-  // const retrieveDataTest = async () => {
-  //   try {
-  //     const response = await fetch(apiURL,
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           "Authorization": `Bearer ${accessToken}`
-  //         }
-
-  //       },
-  //     )
-
-  //     const data = await response.json()
-  //     console.log("Retrived Data", data)
-  //     console.log("GET Status Code", response.status)
-  //     console.log("Returned Data", )
-
-  //     if (!response.ok) {
-  //       console.log("Error", data.errors)
-  //     }
-  //   } catch (error) {
-  //     console.log("Fetch Error", error)
-
-  //   }
-  // }
-
-  // retrieveDataTest()
 
   // JSX of our Newsletter Form
   return (
@@ -213,7 +175,7 @@ export default function NewsletterOptInForm() {
           </select>
 
 
-          /* Newsletter Opt-In Checkbox */
+         { /* Newsletter Opt-In Checkbox */ }
           <label>
             <input
               type="checkbox"
@@ -225,7 +187,7 @@ export default function NewsletterOptInForm() {
             Subscribe to our weekly newsletter
           </label>
 
-          /* Workshop Series Dropdown */
+        {  /* Workshop Series Dropdown */ }
           <select
             value={workshopSeries}
             onChange={handleWorkshopSeries}
